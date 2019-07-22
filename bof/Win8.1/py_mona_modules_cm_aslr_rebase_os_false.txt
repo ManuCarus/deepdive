@@ -1,0 +1,23 @@
+0:005> !py mona modules -cm aslr=false,rebase=false,os=false
+Hold on...
+[+] Command used:
+!py C:\Program Files\Windows Kits\8.1\Debuggers\x86\mona.py modules -cm aslr=false,rebase=false,os=false
+
+---------- Mona command started on 2015-06-28 17:54:26 (v2.0, rev 561) ----------
+[+] Processing arguments and criteria
+    - Pointer access level : X
+    - Module criteria : ['aslr=false', 'rebase=false', 'os=false']
+[+] Generating module info table, hang on...
+    - Processing modules
+    - Done. Let's rock 'n roll.
+----------------------------------------------------------------------------------------------------------------------------------
+ Module info :
+----------------------------------------------------------------------------------------------------------------------------------
+ Base       | Top        | Size       | Rebase | SafeSEH | ASLR  | NXCompat | OS Dll | Version, Modulename & Path
+----------------------------------------------------------------------------------------------------------------------------------
+ 0x622c0000 | 0x62302000 | 0x00042000 | False  | True    | False |  False   | False  | 11.0.9600.17031 [IEShims.dll] (C:\Program Files\Internet Explorer\IEShims.dll)
+ 0x63be0000 | 0x63c26000 | 0x00046000 | False  | True    | False |  False   | False  | 11.0.9600.17031 [ieproxy.dll] (C:\Program Files\Internet Explorer\ieproxy.dll)
+ 0x009b0000 | 0x00a76000 | 0x000c6000 | False  | True    | False |  False   | False  | 11.0.9600.17037 [iexplore.exe] (C:\Program Files\Internet Explorer\iexplore.exe)
+----------------------------------------------------------------------------------------------------------------------------------
+
+

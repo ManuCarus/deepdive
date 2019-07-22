@@ -1,0 +1,101 @@
+0:005> !py mona modules 
+Hold on...
+[+] Command used:
+!py C:\Program Files\Windows Kits\8.1\Debuggers\x86\mona.py modules
+
+---------- Mona command started on 2015-06-28 17:55:57 (v2.0, rev 561) ----------
+[+] Processing arguments and criteria
+    - Pointer access level : X
+[+] Generating module info table, hang on...
+    - Processing modules
+    - Done. Let's rock 'n roll.
+----------------------------------------------------------------------------------------------------------------------------------
+ Module info :
+----------------------------------------------------------------------------------------------------------------------------------
+ Base       | Top        | Size       | Rebase | SafeSEH | ASLR  | NXCompat | OS Dll | Version, Modulename & Path
+----------------------------------------------------------------------------------------------------------------------------------
+ 0x69440000 | 0x69f79000 | 0x00b39000 | False  | True    | False |  False   | True   | 11.0.9600.17031 [IEFRAME.dll] (C:\Windows\SYSTEM32\IEFRAME.dll)
+ 0x75970000 | 0x759b1000 | 0x00041000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [SHLWAPI.dll] (C:\Windows\system32\SHLWAPI.dll)
+ 0x058d0000 | 0x05a59000 | 0x00189000 | True   | False   | False |  False   | True   | 5.5.2.0 [NIPPLIB.DLL] (C:\Windows\system32\NIPPLIB.DLL)
+ 0x70300000 | 0x70422000 | 0x00122000 | False  | True    | False |  False   | True   | 11.0.9600.17031 [urlmon.dll] (C:\Windows\SYSTEM32\urlmon.dll)
+ 0x649f0000 | 0x65a8e000 | 0x0109e000 | False  | True    | False |  False   | True   | 11.0.9600.17037 [MSHTML.dll] (C:\Windows\SYSTEM32\MSHTML.dll)
+ 0x73cb0000 | 0x73d49000 | 0x00099000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [apphelp.dll] (C:\Windows\system32\apphelp.dll)
+ 0x74f50000 | 0x750cf000 | 0x0017f000 | False  | True    | False |  False   | True   | 6.3.9600.16431 [CRYPT32.dll] (C:\Windows\system32\CRYPT32.dll)
+ 0x74510000 | 0x7458c000 | 0x0007c000 | False  | True    | False |  False   | True   | 6.3.9600.16423 [DNSAPI.dll] (C:\Windows\SYSTEM32\DNSAPI.dll)
+ 0x63bc0000 | 0x63bd8000 | 0x00018000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [vaultcli.dll] (C:\Windows\System32\vaultcli.dll)
+ 0x750d0000 | 0x7518e000 | 0x000be000 | False  | True    | False |  False   | True   | 7.0.9600.16384 [msvcrt.dll] (C:\Windows\system32\msvcrt.dll)
+ 0x74ba0000 | 0x74ba9000 | 0x00009000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [CRYPTBASE.dll] (C:\Windows\SYSTEM32\CRYPTBASE.dll)
+ 0x746a0000 | 0x746e5000 | 0x00045000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [mswsock.dll] (C:\Windows\system32\mswsock.dll)
+ 0x622c0000 | 0x62302000 | 0x00042000 | False  | True    | False |  False   | False  | 11.0.9600.17031 [IEShims.dll] (C:\Program Files\Internet Explorer\IEShims.dll)
+ 0x73720000 | 0x73738000 | 0x00018000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [dwmapi.dll] (C:\Windows\system32\dwmapi.dll)
+ 0x77280000 | 0x773e5000 | 0x00165000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [ntdll.dll] (C:\Windows\SYSTEM32\ntdll.dll)
+ 0x63be0000 | 0x63c26000 | 0x00046000 | False  | True    | False |  False   | False  | 11.0.9600.17031 [ieproxy.dll] (C:\Program Files\Internet Explorer\ieproxy.dll)
+ 0x75610000 | 0x7564e000 | 0x0003e000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [sechost.dll] (C:\Windows\SYSTEM32\sechost.dll)
+ 0x77250000 | 0x77275000 | 0x00025000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [IMM32.DLL] (C:\Windows\system32\IMM32.DLL)
+ 0x704d0000 | 0x70564000 | 0x00094000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [winhttp.dll] (C:\Windows\SYSTEM32\winhttp.dll)
+ 0x05a70000 | 0x05aba000 | 0x0004a000 | True   | False   | False |  False   | True   | 5.5.2.0 [nipplibr.dll] (C:\Windows\system32\iprint\nls\deu\nipplibr.dll)
+ 0x72da0000 | 0x72f9d000 | 0x001fd000 | False  | True    | False |  False   | True   | 6.3.9600.16505 [d3d10warp.dll] (C:\Windows\SYSTEM32\d3d10warp.dll)
+ 0x748e0000 | 0x748ff000 | 0x0001f000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [bcrypt.dll] (C:\Windows\SYSTEM32\bcrypt.dll)
+ 0x700e0000 | 0x702f9000 | 0x00219000 | False  | True    | False |  False   | True   | 11.0.9600.17031 [iertutil.dll] (C:\Windows\SYSTEM32\iertutil.dll)
+ 0x71af0000 | 0x71c13000 | 0x00123000 | False  | True    | False |  False   | True   | 7.0.9600.17031 [PROPSYS.dll] (C:\Windows\SYSTEM32\PROPSYS.dll)
+ 0x6fe80000 | 0x7003d000 | 0x001bd000 | False  | True    | False |  False   | True   | 11.0.9600.17031 [WININET.dll] (C:\Windows\SYSTEM32\WININET.dll)
+ 0x771d0000 | 0x7724d000 | 0x0007d000 | False  | True    | False |  False   | True   | 2001.12.10530.16384 [clbcatq.dll] (C:\Windows\SYSTEM32\clbcatq.dll)
+ 0x75340000 | 0x75439000 | 0x000f9000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [KERNEL32.DLL] (C:\Windows\system32\KERNEL32.DLL)
+ 0x66360000 | 0x6636f000 | 0x0000f000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [SPOOLSS.DLL] (C:\Windows\SYSTEM32\SPOOLSS.DLL)
+ 0x73680000 | 0x73688000 | 0x00008000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [WINNSI.DLL] (C:\Windows\SYSTEM32\WINNSI.DLL)
+ 0x721d0000 | 0x72218000 | 0x00048000 | False  | True    | False |  False   | True   | 7.2.9600.16384 [OLEACC.DLL] (C:\Windows\SYSTEM32\OLEACC.DLL)
+ 0x669a0000 | 0x669cf000 | 0x0002f000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [MLANG.dll] (C:\Windows\SYSTEM32\MLANG.dll)
+ 0x74380000 | 0x743af000 | 0x0002f000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [rsaenh.dll] (C:\Windows\system32\rsaenh.dll)
+ 0x736d0000 | 0x736d9000 | 0x00009000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [Secur32.dll] (C:\Windows\SYSTEM32\Secur32.dll)
+ 0x75190000 | 0x75196000 | 0x00006000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [psapi.dll] (C:\Windows\system32\psapi.dll)
+ 0x73d70000 | 0x73d77000 | 0x00007000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [DPAPI.DLL] (C:\Windows\SYSTEM32\DPAPI.DLL)
+ 0x746f0000 | 0x74708000 | 0x00018000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [CRYPTSP.dll] (C:\Windows\SYSTEM32\CRYPTSP.dll)
+ 0x05850000 | 0x058cb000 | 0x0007b000 | True   | False   | False |  False   | True   | 5.5.2.0 [ienipp.ocx] (C:\Windows\system32\ienipp.ocx)
+ 0x72220000 | 0x725e5000 | 0x003c5000 | False  | True    | False |  False   | True   | 6.3.9600.16473 [d2d1.dll] (C:\Windows\SYSTEM32\d2d1.dll)
+ 0x6eff0000 | 0x6f004000 | 0x00014000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [MPR.dll] (C:\Windows\system32\MPR.dll)
+ 0x758e0000 | 0x75966000 | 0x00086000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [comdlg32.dll] (C:\Windows\system32\comdlg32.dll)
+ 0x73ef0000 | 0x73ef9000 | 0x00009000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [kernel.appcore.dll] (C:\Windows\SYSTEM32\kernel.appcore.dll)
+ 0x73690000 | 0x736ae000 | 0x0001e000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [IPHLPAPI.DLL] (C:\Windows\SYSTEM32\IPHLPAPI.DLL)
+ 0x641a0000 | 0x64250000 | 0x000b0000 | False  | True    | False |  False   | True   | 11.0.9600.17031 [ieapfltr.dll] (C:\Windows\System32\ieapfltr.dll)
+ 0x645a0000 | 0x649b6000 | 0x00416000 | False  | True    | False |  False   | True   | 11.0.9600.17031 [jscript9.dll] (C:\Windows\System32\jscript9.dll)
+ 0x62250000 | 0x622bf000 | 0x0006f000 | False  | True    | False |  False   | True   | 11.0.9600.16384 [IEUI.dll] (C:\Windows\SYSTEM32\IEUI.dll)
+ 0x73d90000 | 0x73e71000 | 0x000e1000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [uxtheme.dll] (C:\Windows\system32\uxtheme.dll)
+ 0x6f180000 | 0x6f18c000 | 0x0000c000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [msimtf.dll] (C:\Windows\system32\msimtf.dll)
+ 0x73050000 | 0x730b2000 | 0x00062000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [dxgi.dll] (C:\Windows\SYSTEM32\dxgi.dll)
+ 0x72880000 | 0x7288a000 | 0x0000a000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [ondemandconnroutehelper.dll] (C:\Windows\SYSTEM32\ondemandconnroutehelper.dll)
+ 0x6e3b0000 | 0x6e4b0000 | 0x00100000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [actxprxy.dll] (C:\Windows\System32\actxprxy.dll)
+ 0x76020000 | 0x771cd000 | 0x011ad000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [SHELL32.dll] (C:\Windows\system32\SHELL32.dll)
+ 0x75540000 | 0x75604000 | 0x000c4000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [RPCRT4.dll] (C:\Windows\system32\RPCRT4.dll)
+ 0x736e0000 | 0x7371d000 | 0x0003d000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [dcomp.dll] (C:\Windows\SYSTEM32\dcomp.dll)
+ 0x74d50000 | 0x74d5e000 | 0x0000e000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [MSASN1.dll] (C:\Windows\system32\MSASN1.dll)
+ 0x75650000 | 0x756c6000 | 0x00076000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [shcore.dll] (C:\Windows\SYSTEM32\shcore.dll)
+ 0x759c0000 | 0x75acc000 | 0x0010c000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [ole32.dll] (C:\Windows\system32\ole32.dll)
+ 0x73490000 | 0x73676000 | 0x001e6000 | False  | True    | False |  False   | True   | 6.10.9600.17031 [comctl32.dll] (C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9600.17031_none_a9efdb8b01377ea7\comctl32.dll)
+ 0x73490000 | 0x73676000 | 0x001e6000 | False  | True    | False |  False   | True   | 6.10.9600.17031 [COMCTL32.dll] (C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9600.17031_none_a9efdb8b01377ea7\comctl32.dll)
+ 0x728a0000 | 0x72a12000 | 0x00172000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [DWrite.dll] (C:\Windows\SYSTEM32\DWrite.dll)
+ 0x75e60000 | 0x75e67000 | 0x00007000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [NSI.dll] (C:\Windows\system32\NSI.dll)
+ 0x70970000 | 0x709bb000 | 0x0004b000 | False  | True    | False |  False   | True   | 6.3.9600.16517 [ninput.dll] (C:\Windows\SYSTEM32\ninput.dll)
+ 0x75440000 | 0x75537000 | 0x000f7000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [MSCTF.dll] (C:\Windows\system32\MSCTF.dll)
+ 0x74ce0000 | 0x74cee000 | 0x0000e000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [profapi.dll] (C:\Windows\SYSTEM32\profapi.dll)
+ 0x74df0000 | 0x74ec2000 | 0x000d2000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [KERNELBASE.dll] (C:\Windows\system32\KERNELBASE.dll)
+ 0x74bb0000 | 0x74c2b000 | 0x0007b000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [sxs.dll] (C:\Windows\SYSTEM32\sxs.dll)
+ 0x744c0000 | 0x744d9000 | 0x00019000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [USERENV.dll] (C:\Windows\SYSTEM32\USERENV.dll)
+ 0x75e70000 | 0x75fbe000 | 0x0014e000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [combase.dll] (C:\Windows\SYSTEM32\combase.dll)
+ 0x74ed0000 | 0x74f0a000 | 0x0003a000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [CFGMGR32.dll] (C:\Windows\system32\CFGMGR32.dll)
+ 0x75cb0000 | 0x75dba000 | 0x0010a000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [GDI32.dll] (C:\Windows\system32\GDI32.dll)
+ 0x74b40000 | 0x74b93000 | 0x00053000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [bcryptPrimitives.dll] (C:\Windows\SYSTEM32\bcryptPrimitives.dll)
+ 0x009b0000 | 0x00a76000 | 0x000c6000 | False  | True    | False |  False   | False  | 11.0.9600.17037 [iexplore.exe] (C:\Program Files\Internet Explorer\iexplore.exe)
+ 0x6da30000 | 0x6da8e000 | 0x0005e000 | False  | True    | False |  False   | True   | 6.3.9600.16457 [WINSPOOL.DRV] (C:\Windows\system32\WINSPOOL.DRV)
+ 0x74b10000 | 0x74b32000 | 0x00022000 | False  | True    | False |  False   | True   | 6.3.9600.16408 [SSPICLI.DLL] (C:\Windows\SYSTEM32\SSPICLI.DLL)
+ 0x74ca0000 | 0x74cde000 | 0x0003e000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [powrprof.dll] (C:\Windows\SYSTEM32\powrprof.dll)
+ 0x75de0000 | 0x75e58000 | 0x00078000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [ADVAPI32.dll] (C:\Windows\system32\ADVAPI32.dll)
+ 0x73110000 | 0x732bf000 | 0x001af000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [d3d11.dll] (C:\Windows\SYSTEM32\d3d11.dll)
+ 0x756d0000 | 0x7587d000 | 0x001ad000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [SETUPAPI.dll] (C:\Windows\system32\SETUPAPI.dll)
+ 0x752f0000 | 0x7533d000 | 0x0004d000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [WS2_32.dll] (C:\Windows\system32\WS2_32.dll)
+ 0x62230000 | 0x62247000 | 0x00017000 | False  | True    | False |  False   | True   | 6.3.9600.16384 [OLEPRO32.DLL] (C:\Windows\system32\OLEPRO32.DLL)
+ 0x751a0000 | 0x752eb000 | 0x0014b000 | False  | True    | False |  False   | True   | 6.3.9600.17031 [user32.dll] (C:\Windows\system32\user32.dll)
+ 0x75ad0000 | 0x75b57000 | 0x00087000 | False  | True    | False |  False   | True   | 6.3.9600.16506 [OLEAUT32.dll] (C:\Windows\system32\OLEAUT32.dll)
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+[+] This mona.py action took 0:00:00.406000

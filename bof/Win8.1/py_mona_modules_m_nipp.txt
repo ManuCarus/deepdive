@@ -1,0 +1,23 @@
+0:005> !py mona modules -m *nipp*
+Hold on...
+[+] Command used:
+!py C:\Program Files\Windows Kits\8.1\Debuggers\x86\mona.py modules -m *nipp*
+
+---------- Mona command started on 2015-06-28 17:52:43 (v2.0, rev 561) ----------
+[+] Processing arguments and criteria
+    - Pointer access level : X
+    - Only querying modules *nipp*
+[+] Generating module info table, hang on...
+    - Processing modules
+    - Done. Let's rock 'n roll.
+----------------------------------------------------------------------------------------------------------------------------------
+ Module info :
+----------------------------------------------------------------------------------------------------------------------------------
+ Base       | Top        | Size       | Rebase | SafeSEH | ASLR  | NXCompat | OS Dll | Version, Modulename & Path
+----------------------------------------------------------------------------------------------------------------------------------
+ 0x058d0000 | 0x05a59000 | 0x00189000 | True   | False   | False |  False   | True   | 5.5.2.0 [NIPPLIB.DLL] (C:\Windows\system32\NIPPLIB.DLL)
+ 0x05a70000 | 0x05aba000 | 0x0004a000 | True   | False   | False |  False   | True   | 5.5.2.0 [nipplibr.dll] (C:\Windows\system32\iprint\nls\deu\nipplibr.dll)
+ 0x05850000 | 0x058cb000 | 0x0007b000 | True   | False   | False |  False   | True   | 5.5.2.0 [ienipp.ocx] (C:\Windows\system32\ienipp.ocx)
+----------------------------------------------------------------------------------------------------------------------------------
+
+

